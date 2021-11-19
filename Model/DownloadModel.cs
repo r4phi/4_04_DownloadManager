@@ -10,9 +10,14 @@ namespace _4_04_DownloadManager.Model
 {
     class DownloadModel : INotifyPropertyChanged
     {
-        #region Properties
+        #region Attributes
         private string url = string.Empty;
-        public string URL
+        private string sourceCode = string.Empty;
+        private TimeSpan downloadTime;
+        #endregion
+
+        #region Properties
+        public string Url
         {
             get => url;
             set
@@ -22,7 +27,6 @@ namespace _4_04_DownloadManager.Model
             }
         }
 
-        private string sourceCode = string.Empty;
         public string SourceCode
         {
             get => sourceCode;
@@ -33,7 +37,6 @@ namespace _4_04_DownloadManager.Model
             }
         }
 
-        private TimeSpan downloadTime;
         public TimeSpan DownloadTime
         {
             get => downloadTime;

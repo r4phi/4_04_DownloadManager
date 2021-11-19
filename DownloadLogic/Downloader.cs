@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace _4_04_DownloadManager.DownloadLogic
 {
@@ -23,13 +24,21 @@ namespace _4_04_DownloadManager.DownloadLogic
             {
                 NumberOfActiveDownloaders++;
             }
-            //TODO: Download Source Code
+            DownloadSourceCode();
             lock (LockNumberOfActiveDownloaders)
             {
                 NumberOfActiveDownloaders--;
             }
             watch.Stop();
             DownloadModel.DownloadTime = TimeSpan.FromMilliseconds(watch.ElapsedMilliseconds);
+        }
+
+        private void DownloadSourceCode()
+        {
+            using (WebClient client = new WebClient())
+            {
+                DownloadModel.SourceCode = client.DownloadString(DownloadModel.Url);
+            }
         }
         #endregion
     }
