@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _4_04_DownloadManager
+namespace _4_04_DownloadManager.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für DownloadView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DownloadView : Window
     {
-        public MainWindow()
+        public DownloadView()
         {
             InitializeComponent();
         }
