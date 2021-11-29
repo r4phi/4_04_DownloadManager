@@ -42,15 +42,15 @@
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="0">
-            <TextBox Text="{Binding Path=DownloadModels[2].Url}"></TextBox>
-            <TextBox Text="{Binding Path=DownloadModels[2].SourceCode}"></TextBox>
+            <TextBox Text="{Binding Path=DownloadModelTask.Url}"></TextBox>
+            <TextBox Text="{Binding Path=DownloadModelTask.SourceCode}"></TextBox>
         </StackPanel>
 
         <Button Content="Start" Grid.Column="3" Grid.Row="0" Command="{Binding Path=StartCommand}"></Button>
 
         <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=DownloadModels[0].DownloadTime}"></TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=DownloadModels[1].DownloadTime}"></TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=DownloadModels[2].DownloadTime}"></TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=DownloadModelTask.DownloadTime}"></TextBlock>
 
     </Grid>
 </Window>

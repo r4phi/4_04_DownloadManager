@@ -13,13 +13,16 @@ namespace _4_04_DownloadManager.ViewModel
     class DownloadViewModel
     {
         #region Constants
-        private const int AMOUNT_OF_LIST_ITEMS = 3;
+        private const int AMOUNT_OF_THREADS = 2;
         #endregion
 
         #region Properties
         public List<DownloadModel> DownloadModels { get; } = new List<DownloadModel>();
         private List<Downloader> Downloaders = new List<Downloader>();
         private List<Thread> Threads = new List<Thread>();
+        public DownloadModel DownloadModelTask { get; set; }
+        private Downloader DownloaderTask;
+        private Task Task;
         #endregion
 
         #region Methods
@@ -42,7 +45,7 @@ namespace _4_04_DownloadManager.ViewModel
 
             StartCommand = new RelayCommand(e =>
             {
-                for(int i = 0; i<AMOUNT_OF_LIST_ITEMS; i++)
+                for(int i = 0; i< AMOUNT_OF_THREADS; i++)
                 {
                     if (DownloadModels[i].Url == string.Empty)
                         continue;
@@ -52,12 +55,18 @@ namespace _4_04_DownloadManager.ViewModel
                         Threads[i].Start();
                     }
                 }
+
+                if (DownloadModelTask.Url != string.Empty)
+                {
+                    Task = new Task(() => DownloaderTask.RunDownload());
+                    Task.Start();
+                }
             }, c => Downloader.NumberOfActiveDownloaders == 0);
         }
 
         private void InitializeProperties()
         {
-            for (int i = 0; i < AMOUNT_OF_LIST_ITEMS; i++)
+            for (int i = 0; i < AMOUNT_OF_THREADS; i++)
             {
                 DownloadModel downloadModelTemp = new DownloadModel();
                 DownloadModels.Add(downloadModelTemp);
@@ -68,6 +77,13 @@ namespace _4_04_DownloadManager.ViewModel
                 Thread threadTemp = null;
                 Threads.Add(threadTemp);
             }
+
+            DownloadModelTask = new DownloadModel();
+            DownloaderTask = new Downloader
+            {
+                DownloadModel = DownloadModelTask
+            };
+            Task = null;
         }
         #endregion
 
